@@ -6,8 +6,10 @@ import matplotlib.pyplot as plt
 
 ###################### Mean #######################
 def mean(arr):
+    # get the dimensions of the array 
     num_rows, num_cols = arr.shape
     ret = []
+    # calculate the mean of the array
     for i in range(num_cols):
         tot = 0
         for j in range(num_rows):
@@ -18,10 +20,12 @@ def mean(arr):
 
 ###################### Covariance #######################
 def covariance(v1,v2):
+    # set our constants
     m1 = np.mean(v1)
     m2 = np.mean(v2)
     c1 = np.shape(v1)[0]
     ret = 0
+    # do the calculation
     for i in range(c1):
         ret = ret +((v1[i]-m1)*(v2[i]-m2))
     return (ret/(c1-1))
@@ -29,6 +33,7 @@ def covariance(v1,v2):
 
 ###################### Correlation  #######################
 def correlation(v1,v2):
+    # constants
     c1 = np.shape(v1)[0]
     m1 = 0
     m2 = 0
@@ -37,15 +42,17 @@ def correlation(v1,v2):
         m2 = m2 +v2[i]
     m1=m1/c1
     m2=m2/c1
-    
+    # normalize
     for i in range(c1):
         v1[i] = v1[i]-m1
         v2[i] = v2[i]-m2
     
+    # calculate top
     top = 0
     for i in range(c1):
         top = top + v1[i]*v2[i]
     
+    # calculate bottom
     l1 = 0
     for i in range(c1):
         l1 = l1 + v1[i]*v1[i]
@@ -56,6 +63,7 @@ def correlation(v1,v2):
         l2 = l2 + v2[i]*v2[i]
     l2 = math.sqrt(l2)
     
+    # divide and return
     return(top/(l1*l2))
 
 ###################### Correlation Greater #######################
